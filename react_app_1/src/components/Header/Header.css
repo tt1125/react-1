@@ -1,0 +1,20 @@
+.header {
+    width: auto;
+    background-color: rgba(79, 183, 79, 0.793);
+    height: 80px;
+}
+
+.item1 {
+    float: left;
+    font-size: 35px;
+    color: white;
+    margin: 10px 0 0 50px;
+}
+
+.item2 {
+    font-size: 20px;
+    float: right;
+    color: white;
+    margin: 20px 80px 0 0;
+    text-decoration: underline;
+}
