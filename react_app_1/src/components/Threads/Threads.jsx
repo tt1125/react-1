@@ -1,9 +1,9 @@
 import './Threads.css'
-export const Threads = () => {
+export const Threads = ({title}) => {
 
     return (
         <div className='threadContainer'>
-            <span className='threadTitle'>hoge</span>
+            <span className='threadTitle'>{title}</span>
         </div>
 
     )
