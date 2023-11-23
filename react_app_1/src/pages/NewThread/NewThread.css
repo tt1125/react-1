@@ -5,7 +5,42 @@
 }
 
 .NewThreadContainer {
-    background-color: aqua;
     display: flex;
     justify-content: center;
 }
+
+.NewThreadContainer2{
+    display: flex;
+    justify-content: center;
+}
+
+.ToTop{
+   font-size: x-large; 
+   margin-top: 30px;
+}
+
+.postButton {
+    display: inline-block;
+    font-size: 20px;
+    width: 200px;
+    height: 48px;
+    border-radius: 48px;
+    margin-right: 24px;
+    margin-left: 50px;
+    margin-top: 30px;
+    color: #fff;
+    background-color: rgba(79, 183, 79, 0.793);
+    border: none;
+    outline: none;
+    cursor: pointer;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+  }
+  
+  .postButton:active {
+    position: relative;
+    top: 4px;
+    left: 4px;
+    box-shadow: none;
+  }
