@@ -1,12 +1,12 @@
-body{
-    background-color:rgb(203, 203, 203);
-    display: block;
-    width: auto;
-  }
-  
-  .newThread{
+body {
+  background-color: rgb(203, 203, 203);
+  display: block;
+  width: auto;
+}
+
+.newThread {
   width: auto;
   font-size: 30px;
   text-align: center;
   padding-right: 15vw;
-  }
+}

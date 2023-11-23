@@ -1,0 +1,11 @@
+.newThreadText {
+    width: 400px;
+    height: 60px;
+    font-size: x-large;
+}
+
+.NewThreadContainer {
+    background-color: aqua;
+    display: flex;
+    justify-content: center;
+}

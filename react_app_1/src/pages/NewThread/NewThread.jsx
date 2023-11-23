@@ -1,8 +1,16 @@
+import Header from "../../components/Header/Header"
+import './NewThread.css'
+
 function NewThread() {
 
-    return(
+    return (
         <>
-            <p>this is NewThread page</p></>
+            <Header />
+            <p className="newThread">スレッド新規作成</p>
+            <div className="NewThreadContainer">
+                <input type="text" className="newThreadText" />
+            </div>
+        </>
     )
 }
 
