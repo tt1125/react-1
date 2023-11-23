@@ -1,27 +1,18 @@
-import { useEffect, useState } from 'react';
-import './App.css';
-import Header from './components/Header/Header';
-import Threads from './components/Threads/Threads';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import NewThread from './pages/NewThread/NewThread';
+import TopPage from './pages/TopPage/TopPage';
 
 function App() {
 
-const [ThreadsData , setThreadsData] = useState([])
-
-  useEffect(()=>{
-    fetch("https://railway.bulletinboard.techtrain.dev/threads?offset=0")
-   .then(response => response.json())
-   .then(result => { console.log("APIを取得しました",result); setThreadsData(result) ;})
-  },[])
-
   return (
-    <>
-      <Header />
-      <body>
-        <p className='newThread'>新着スレッド</p>
-        {ThreadsData.map( (ThreadData) => {return (<Threads title = {ThreadData.title}/>)})}
-    </body >
-    </>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" Component={TopPage} />
+        <Route path="/NewThread" Component={NewThread} />
+    </Routes>
+    </BrowserRouter >
   );
+
 }
 
 export default App;
