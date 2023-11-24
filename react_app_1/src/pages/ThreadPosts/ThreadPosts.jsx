@@ -5,9 +5,34 @@ import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
 function ThreadPosts() {
+
+    const [ThreadsData, setThreadsData] = useState([])
     const [sentence, setSentence] = useState("");
     const [posts, setPosts] = useState([]);
     const { id } = useParams();
+    const [title, setTitle] = useState("")
+    const [titleName, setTitleName] = useState("")
+
+    useEffect(() => {
+        fetch("https://railway.bulletinboard.techtrain.dev/threads?offset=0")
+            .then(response => response.json())
+            .then(result => {
+                setThreadsData(result);
+                const findTitle = result.find(threads => threads.id === id);
+                if (findTitle) {
+                    setTitle(findTitle.title);
+                    setTitleName(findTitle.title); // titleNameにも設定
+                }
+            })
+            .catch(error => console.error('スレッド情報の取得エラー:', error));
+    }, [id]);
+
+    useEffect(() => {
+        console.log("test", ThreadsData);
+        const findTitle = ThreadsData.find(threads => threads.id === id);
+        setTitle(findTitle);
+        console.log("タイトルです", title); 
+    }, [ThreadsData])
 
     const submitNewPost = async () => {
         try {
@@ -35,6 +60,7 @@ function ThreadPosts() {
 
     const handleButtonClick = () => {
         submitNewPost();
+        window.location.href = `/${id}`;
     };
 
     const handleSentenceChange = (e) => {
@@ -51,16 +77,19 @@ function ThreadPosts() {
             });
     }, [id]); // idが変更された場合に再度実行される
 
+
+
+
     return (
         <>
-           <Header />
+            <Header />
             <div className="postContainer1">
                 <div>
-                    <span className="postTitle">タイトル</span>
-                     {posts.map((posts) => { return (<Posts post={posts.post} />) })} 
+                    <span className="postTitle">{}</span>
+                    {posts.map((posts) => { return (<Posts post={posts.post} />) })}
                 </div>
                 <div className='postContainer2'>
-                    <input type="text" className='postText' value={sentence} onChange={handleSentenceChange}/>
+                    <input type="text" className='postText' value={sentence} onChange={handleSentenceChange} />
                     <button className='submitPost' onClick={handleButtonClick}>投稿</button>
                 </div>
             </div>

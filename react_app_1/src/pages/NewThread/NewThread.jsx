@@ -37,7 +37,7 @@ function NewThread() {
 
     const handleButtonClick = () => {
         postNewThread(title);
-        
+        window.location.href = "/";
     };
     
     return (
