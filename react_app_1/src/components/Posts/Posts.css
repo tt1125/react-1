@@ -1,0 +1,12 @@
+.postContainer{
+ width: 600px;
+ height: 80px;
+ background-color: aliceblue;
+ margin: 10px;
+ margin-left: 100px;   
+}
+
+.post{
+    padding: 20px;
+  font-size: large
+}

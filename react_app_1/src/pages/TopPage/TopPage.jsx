@@ -18,7 +18,7 @@ function TopPage (){
       <Header/>
       <body>
         <p className='newThread'>新着スレッド</p>
-        {ThreadsData.map( (ThreadData) => {return (<Threads title = {ThreadData.title}/>)})}
+        {ThreadsData.map( (ThreadData) => {return (<Threads title = {ThreadData.title} ThreadId={ThreadData.id}/>)})}
     </body >
     </>
   );
