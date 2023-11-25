@@ -20,7 +20,7 @@ function NewThread() {
                 },
                 body: JSON.stringify({ title: threadTitle }),
             });
-    
+
             if (response.ok) {
                 const data = await response.json();
                 console.log('New thread created:', data);
@@ -36,10 +36,15 @@ function NewThread() {
     };
 
     const handleButtonClick = () => {
-        postNewThread(title);
-        window.location.href = "/";
+        if (title == "") {
+            alert("タイトルを入力してください")
+        }
+        else {
+            postNewThread(title);
+            window.location.href = "/";
+        }
     };
-    
+
     return (
         <>
             <Header />

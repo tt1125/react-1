@@ -17,7 +17,7 @@ function ThreadPosts() {
 
     const submitNewPost = async () => {
         try {
-            const response = await fetch(`https://railway.bulletinboard.techtrain.dev/threads/${threadId}/posts`, {
+            const response = await fetch(`https://railway.bulletinboard.techtrain.dev/threads/${params.split('&')[1]}/posts`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -40,7 +40,7 @@ function ThreadPosts() {
     };
 
     const handleButtonClick = () => {
-        if (sentence === "") {
+        if (sentence == "") {
             alert("投稿内容を入力してください")
         }
         else {
