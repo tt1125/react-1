@@ -28,14 +28,11 @@ function ThreadPosts() {
             if (response.ok) {
                 const data = await response.json();
                 console.log('New post created:', data);
-                // 新しい投稿が作成されたら、何かを行う
             } else {
                 console.error('Failed to create new post');
-                // エラーの場合、エラーを処理するためのコードを追加
             }
         } catch (error) {
             console.error('Error creating new post:', error);
-            // ネットワークエラーなどの例外が発生した場合、それを処理する
         }
     };
 

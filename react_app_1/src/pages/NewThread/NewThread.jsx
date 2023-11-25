@@ -23,14 +23,11 @@ function NewThread() {
             if (response.ok) {
                 const data = await response.json();
                 console.log('New thread created:', data);
-                // 新しいスレッドが作成されたら、dataには作成されたスレッドに関する情報が含まれることがあります
             } else {
                 console.error('Failed to create new thread');
-                // エラーの場合、エラーを処理するためのコードをここに追加します
             }
         } catch (error) {
             console.error('Error creating new thread:', error);
-            // ネットワークエラーなどの例外が発生した場合、ここでそれを処理します
         }
     };
 
