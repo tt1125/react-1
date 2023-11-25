@@ -1,7 +1,6 @@
 import { useState } from "react";
 import Header from "../../components/Header/Header";
 import './NewThread.css';
-import { redirect } from "react-router-dom";
 
 function NewThread() {
     const [title, setTitle] = useState("");
@@ -36,7 +35,7 @@ function NewThread() {
     };
 
     const handleButtonClick = () => {
-        if (title == "") {
+        if (title === "") {
             alert("タイトルを入力してください")
         }
         else {

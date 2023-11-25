@@ -40,7 +40,7 @@ function ThreadPosts() {
     };
 
     const handleButtonClick = () => {
-        if (sentence == "") {
+        if (sentence === "") {
             alert("投稿内容を入力してください")
         }
         else {
