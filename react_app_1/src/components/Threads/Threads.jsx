@@ -4,7 +4,7 @@ export const Threads = ({title , ThreadId}) => {
 
     return (
         <div className='threadContainer'>
-            <Link key={ThreadId} to={`/${ThreadId}`} >
+            <Link key={ThreadId} to={`/${title}&${ThreadId}`} >
             <span className='threadTitle'>{title}</span>
             </Link>
         </div>

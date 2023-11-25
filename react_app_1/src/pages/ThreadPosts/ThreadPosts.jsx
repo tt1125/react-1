@@ -6,37 +6,18 @@ import { useEffect, useState } from 'react';
 
 function ThreadPosts() {
 
-    const [ThreadsData, setThreadsData] = useState([])
+
     const [sentence, setSentence] = useState("");
     const [posts, setPosts] = useState([]);
-    const { id } = useParams();
-    const [title, setTitle] = useState("")
-    const [titleName, setTitleName] = useState("")
+    const params = useParams().id;
+    const [threadTitle, setThreadTitle] = useState("")
+    const [threadId, setThreadId] = useState("")
 
-    useEffect(() => {
-        fetch("https://railway.bulletinboard.techtrain.dev/threads?offset=0")
-            .then(response => response.json())
-            .then(result => {
-                setThreadsData(result);
-                const findTitle = result.find(threads => threads.id === id);
-                if (findTitle) {
-                    setTitle(findTitle.title);
-                    setTitleName(findTitle.title); // titleNameにも設定
-                }
-            })
-            .catch(error => console.error('スレッド情報の取得エラー:', error));
-    }, [id]);
 
-    useEffect(() => {
-        console.log("test", ThreadsData);
-        const findTitle = ThreadsData.find(threads => threads.id === id);
-        setTitle(findTitle);
-        console.log("タイトルです", title); 
-    }, [ThreadsData])
 
     const submitNewPost = async () => {
         try {
-            const response = await fetch(`https://railway.bulletinboard.techtrain.dev/threads/${id}/posts`, {
+            const response = await fetch(`https://railway.bulletinboard.techtrain.dev/threads/${threadId}/posts`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -59,8 +40,13 @@ function ThreadPosts() {
     };
 
     const handleButtonClick = () => {
-        submitNewPost();
-        window.location.href = `/${id}`;
+        if (sentence === "") {
+            alert("投稿内容を入力してください")
+        }
+        else {
+            submitNewPost();
+            window.location.href = `/${threadTitle}&${threadId}`;
+        }
     };
 
     const handleSentenceChange = (e) => {
@@ -69,13 +55,23 @@ function ThreadPosts() {
     };
 
     useEffect(() => {
-        fetch(`https://railway.bulletinboard.techtrain.dev/threads/${id}/posts`)
+        console.log("URLからデータを取得しました", params)
+        const paramsData = params.split('&')
+        console.log("データを分割しました", paramsData);
+        setThreadTitle(paramsData[0]);
+        setThreadId(paramsData[1]);
+        fetch(`https://railway.bulletinboard.techtrain.dev/threads/${paramsData[1]}/posts`)
             .then(res => res.json())
             .then(data => {
                 setPosts(data.posts);
                 console.log("投稿内容を取得しました", data.posts);
             });
-    }, [id]); // idが変更された場合に再度実行される
+    }, []);
+
+    useEffect(() => {
+        console.log("タイトルのstate", threadTitle)
+        console.log("IDのState", threadId)
+    }, [posts])
 
 
 
@@ -85,8 +81,8 @@ function ThreadPosts() {
             <Header />
             <div className="postContainer1">
                 <div>
-                    <span className="postTitle">{}</span>
-                    {posts.map((posts) => { return (<Posts post={posts.post} />) })}
+                    <span className="postTitle">{threadTitle}</span>
+                    {posts.map((posts, i) => { return (<Posts key={i} post={posts.post} />) })}
                 </div>
                 <div className='postContainer2'>
                     <input type="text" className='postText' value={sentence} onChange={handleSentenceChange} />
