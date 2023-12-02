@@ -36,12 +36,12 @@ function ThreadPosts() {
         }
     };
 
-    const handleButtonClick = () => {
+    const handleButtonClick = async() => {
         if (sentence === "") {
             alert("投稿内容を入力してください")
         }
         else {
-            submitNewPost();
+            await submitNewPost();
             window.location.href = `/${threadTitle}&${threadId}`;
         }
     };
